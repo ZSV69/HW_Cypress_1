@@ -35,30 +35,22 @@ describe('Book list', () => {
   })
   
   it('Add book', () => {
-    cy.get('.p-0 > .btn').click()
-    cy.get('#title').type ("Война и мир")
-    cy.get('#description').type ("different text")
-    cy.get('#authors').type ("Лев Толстой")
-    cy.contains('Submit').click()
-    cy.contains ("Война и мир").should ('be.visible')
+    cy.addNewBook ("Колобок"," ","Нет автора")
+    cy.contains ("Колобок").should ('be.visible')
   })
 
   it('Add an existing book', () => {
-    cy.get('.p-0 > .btn').click()
-    cy.get('#title').type ("Война и мир")
-    cy.get('#description').type ("different text")
-    cy.get('#authors').type ("Лев Толстой")
-    cy.contains('Submit').click()
-    cy.contains ("Война и мир").should ('be.visible')
+    cy.addNewBook("Колобок"," ", "Нет автора")
+    cy.contains ("Колобок").should ('be.visible')
     //не знаю как описать проверку, подразумевается ошибка "Книга уже есть в библиотеке"
   })
 
   describe ('Favorites', () => {
 
     it ("add favorite book", () => {
-      cy.get('[href="book/6857e7b8-7912-463b-80c1-7d31b007fb8a"] > .h-100 > .card-footer > .btn').click()
+      cy.get('[href="book/d9893892-f81c-4626-8011-7a1aab069fd2"] > .h-100 > .card-footer > .btn').click()
       cy.visit ("http://localhost:3000/favorites")
-      cy.contains ("Война и мир").should ("be.visible")
+      cy.contains ("Колобок").should ("be.visible")
     })
 
     it ("delete favorite book", () => {
